@@ -1,4 +1,4 @@
-package bootstrap.example.com.appspring;
+package bootstrap.example.com.appspring.controllers;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
