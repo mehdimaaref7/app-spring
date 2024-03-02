@@ -1,13 +1,11 @@
 package bootstrap.example.com.appspring.controllers;
-
-
 import bootstrap.example.com.appspring.datamodel.Book;
 import bootstrap.example.com.appspring.datamodel.BookRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
+import java.util.Objects;
 
 
 @RestController
@@ -52,10 +50,10 @@ public class BookController {
 
     @PutMapping("/{id}")
     public Book updateBook(@RequestBody Book book, @PathVariable Long id){
-        if (book.getId() != id){
+        if (!Objects.equals(book.getId(), id)){
             throw new BookIdMismatchException();
 
-        };
+        }
         bookRepository.findById(id)
                 .orElseThrow(BookNotFoundException::new);
         return bookRepository.save(book);
